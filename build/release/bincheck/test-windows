@@ -2,8 +2,13 @@
 
 set -euo pipefail
 
+source ./download_binary.sh
+
+COCKROACH_VERSION=$1
+COCKROACH_SHA=$2
+
 # Download the binary based on the VERSION file. This sets the COCKROACH_VERSION env variable
 # and downloads the binary in ./mnt/
-. download_binary.sh "windows-6.2-amd64.zip"
+download_and_extract "windows-6.2-amd64.zip"
 
 ./bincheck ./mnt/cockroach.exe "$COCKROACH_VERSION" "$COCKROACH_SHA"
